@@ -1,0 +1,30 @@
+[user]
+	name = hqingyi
+	email = huangb.qingy@gmail.com
+[push]
+	default = simple
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	mt = mergetool
+	br = branch
+	sts = status -s
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+	quotepath = false
+[diff]
+  tool = bcomp
+[difftool]
+  prompt = false
+[difftool "bcomp"]
+  trustExitCode = true
+  cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+[merge]
+  tool = bcomp
+[mergetool]
+  prompt = false
+[mergetool "bcomp"]
+  trustExitCode = true
+  cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
