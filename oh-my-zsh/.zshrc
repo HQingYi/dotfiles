@@ -83,19 +83,3 @@ for file in /etc/profile.d/*.sh; do
   fi
 done
 
-# alias
-alias j="jump"
-alias m="mark"
-alias ms="marks"
-alias nc.dec='python /Users/huangb/.bin/encrypt_file.py -d'
-alias nc.enc='python /Users/huangb/.bin/encrypt_file.py -e'
-
-export PATH="/opt/mongodb-osx-x86_64-2.4.14/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/huangb/Gems/bin:/opt/apache-maven-3.1.1/bin:/usr/local/opt/ruby/bin:/usr/local/mysql/bin:/opt/bin:/opt/apktool-install-macosx-r05-ibot:/opt/dex2jar-0.0.9.15:/opt/sce-cli-Linux-3.0.1/bin:/opt/local/bin:$PATH"
-[[ -s "/Users/huangb/.gvm/scripts/gvm" ]] && source "/Users/huangb/.gvm/scripts/gvm"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export PATH=$PATH:/Users/huangb/Develop/Repo/HQingYi/hi_shell_ext/bin
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH=$PATH:/Users/huangb/Develop/Repo/Wut/toolkit/wut-utils/bin
-for wut_env_file in /Users/huangb/Develop/Repo/Wut/toolkit/wut-utils/env/*.sh; do [[ -r $wut_env_file ]] && source $wut_env_file; done
