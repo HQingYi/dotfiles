@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(bower brew common-aliases copyfile django docker encode64 fabric git git-extras git-flow github gitignore jump meteor npm osx pip python sublime sudo tmux tmuxinator zsh_reload)
+plugins=(aliases bower brew common-aliases copyfile django docker encode64 fabric git git-extras git-flow github gitignore jump meteor npm osx pip python sublime sudo tmux tmuxinator zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
