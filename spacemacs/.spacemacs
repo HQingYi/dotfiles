@@ -261,7 +261,7 @@ layers configuration. You are free to put any user code."
   (setq user-full-name "hqingyi")
   (setq user-mail-address "bin.huang@678.ms")
   ;; 分组
-  (setq nnmail-split-methods 
+  (setq nnmail-split-methods
         '(
           ("Email.code_review" "^From:.git@mail.tobeornot.cn")
           ))
