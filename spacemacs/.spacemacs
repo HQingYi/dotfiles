@@ -33,10 +33,12 @@ values."
      javascript
      shell-scripts
      ;; toolkits
-     org
+     (org :variables org-enable-github-support t)
      git
      spacemacs
      github
+     erc
+     gnus
      ;; assist
      auto-completion
      (chinese :variables chinese-enable-youdao-dict t)
@@ -168,7 +170,7 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
@@ -214,13 +216,78 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+  (setq socks-override-function 1)
+  (setq socks-noproxy '("localhost"))
+  (setq socks-server (list "Shadowsocks" "localhost" 1080 5))
+  (require 'socks)
+  (setq erc-server-connect-function 'socks-open-network-stream)
 )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+
+  ;; Get exmail, and store in nnml
+  (setq gnus-secondary-select-methods
+        '(
+          (nnimap "exmail"
+                  (nnimap-address
+                   "imap.exmail.qq.com")
+                  (nnimap-server-port 993)
+                  (nnimap-stream ssl))
+          ))
+
+  ;; Send email via Gmail:
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-default-smtp-server "smtp.exmail.qq.com")
+
+  ;; Archive outgoing email in Sent folder on imap.exmail.qq.com :
+  (setq gnus-message-archive-method '(nnimap "imap.exmail.qq.com ")
+        gnus-message-archive-group "Sent Mail")
+
+  ;; set return email address based on incoming email address
+  ;; (setq gnus-posting-styles
+  ;;       '(((header "to" "address@outlook.com")
+  ;;          (address "address@outlook.com"))
+  ;;         ((header "to" "address@gmail.com")
+  ;;          (address "address@gmail.com"))))
+
+  ;; store email in ~/gmail directory
+  (setq nnml-directory "~/.mail")
+  (setq message-directory "~/.mail")
+
+  ;; set username
+  (setq user-full-name "hqingyi")
+  (setq user-mail-address "bin.huang@678.ms")
+  ;; 分组
+  (setq nnmail-split-methods 
+        '(
+          ("Email.code_review" "^From:.git@mail.tobeornot.cn")
+          ))
+
+  ;; (defvar http-proxy-host "127.0.0.1")
+  ;; (defvar http-proxy-port 8080)
+  ;; (defun open-http-proxy-stream (name buffer host service &rest parameters)
+  ;;   "Open network stream via http proxy. Proxy is defined by variables http-proxy-host and http-proxy-port."
+  ;;   (let ((tmp-process (apply 'open-network-stream name buffer http-proxy-host http-proxy-port parameters)))
+  ;;     (process-send-string name (format "CONNECT %s:%d HTTP/1.1\n\n" host service))
+  ;;     tmp-process))
+  ;; (setq erc-server-connect-function 'open-http-proxy-stream)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Dropbox/PK/GTD/"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
