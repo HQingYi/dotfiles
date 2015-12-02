@@ -231,36 +231,28 @@ layers configuration. You are free to put any user code."
   ;; nnimap is too slow, use offline-imap as proxy server, just read it by nnmaildir
   (setq gnus-secondary-select-methods
         '((nnmaildir "Wut" (directory "~/.offlineimap/wut"))))
-
   ;; set email username
   (setq user-full-name "hqingyi")
   (setq user-mail-address "bin.huang@678.ms")
   ;; Send email via smtp:
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-default-smtp-server "smtp.exmail.qq.com")
-
-  ;; set return email address based on incoming email address
-  ;; (setq gnus-posting-styles
-  ;;       '(((header "to" "address@outlook.com")
-  ;;          (address "address@outlook.com"))
-  ;;         ((header "to" "address@gmail.com")
-  ;;          (address "address@gmail.com"))))
-
   ;; store email in ~/.mail directory
   (setq nnml-directory "~/.mail")
   (setq message-directory "~/.mail")
-
   ;; auto check mail every 5 minutes
-  (gnus-demon-add-handler 'gnus-demon-scan-news 2 t)
+  ;; (gnus-demon-add-handler 'gnus-demon-scan-news 2 t)
 
-  ;; (defvar http-proxy-host "127.0.0.1")
-  ;; (defvar http-proxy-port 8080)
-  ;; (defun open-http-proxy-stream (name buffer host service &rest parameters)
-  ;;   "Open network stream via http proxy. Proxy is defined by variables http-proxy-host and http-proxy-port."
-  ;;   (let ((tmp-process (apply 'open-network-stream name buffer http-proxy-host http-proxy-port parameters)))
-  ;;     (process-send-string name (format "CONNECT %s:%d HTTP/1.1\n\n" host service))
-  ;;     tmp-process))
-  ;; (setq erc-server-connect-function 'open-http-proxy-stream)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (dot . t)
+     (java . t)
+     (awk . t)
+     (js . t)
+     (org . t)
+     (sql . t)
+     (shell . t)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
