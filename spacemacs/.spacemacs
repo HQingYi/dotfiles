@@ -228,23 +228,16 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
-  ;; Get exmail, and store in nnml
+  ;; nnimap is too slow, use offline-imap as proxy server, just read it by nnmaildir
   (setq gnus-secondary-select-methods
-        '(
-          (nnimap "exmail"
-                  (nnimap-address
-                   "imap.exmail.qq.com")
-                  (nnimap-server-port 993)
-                  (nnimap-stream ssl))
-          ))
+        '((nnmaildir "Wut" (directory "~/.offlineimap/wut"))))
 
-  ;; Send email via Gmail:
+  ;; set email username
+  (setq user-full-name "hqingyi")
+  (setq user-mail-address "bin.huang@678.ms")
+  ;; Send email via smtp:
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-default-smtp-server "smtp.exmail.qq.com")
-
-  ;; Archive outgoing email in Sent folder on imap.exmail.qq.com :
-  (setq gnus-message-archive-method '(nnimap "imap.exmail.qq.com ")
-        gnus-message-archive-group "Sent Mail")
 
   ;; set return email address based on incoming email address
   ;; (setq gnus-posting-styles
@@ -253,18 +246,12 @@ layers configuration. You are free to put any user code."
   ;;         ((header "to" "address@gmail.com")
   ;;          (address "address@gmail.com"))))
 
-  ;; store email in ~/gmail directory
+  ;; store email in ~/.mail directory
   (setq nnml-directory "~/.mail")
   (setq message-directory "~/.mail")
 
-  ;; set username
-  (setq user-full-name "hqingyi")
-  (setq user-mail-address "bin.huang@678.ms")
-  ;; 分组
-  (setq nnmail-split-methods
-        '(
-          ("Email.code_review" "^From:.git@mail.tobeornot.cn")
-          ))
+  ;; auto check mail every 5 minutes
+  (gnus-demon-add-handler 'gnus-demon-scan-news 2 t)
 
   ;; (defvar http-proxy-host "127.0.0.1")
   ;; (defvar http-proxy-port 8080)
