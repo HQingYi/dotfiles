@@ -240,10 +240,13 @@ layers configuration. You are free to put any user code."
   ;; store email in ~/.mail directory
   (setq nnml-directory "~/.mail")
   (setq message-directory "~/.mail")
+  (setq nndraft-directory "~/.mail/drafts")
   ;; auto check mail every 2 minutes
   (with-eval-after-load 'gnus
     (gnus-demon-add-handler 'gnus-demon-scan-news 2 t))
 
+  ;; set default location for org.
+  (setq org-directory "~/.org")
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)
