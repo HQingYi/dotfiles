@@ -240,8 +240,9 @@ layers configuration. You are free to put any user code."
   ;; store email in ~/.mail directory
   (setq nnml-directory "~/.mail")
   (setq message-directory "~/.mail")
-  ;; auto check mail every 5 minutes
-  ;; (gnus-demon-add-handler 'gnus-demon-scan-news 2 t)
+  ;; auto check mail every 2 minutes
+  (with-eval-after-load 'gnus
+    (gnus-demon-add-handler 'gnus-demon-scan-news 2 t))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
