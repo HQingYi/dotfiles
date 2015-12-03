@@ -227,6 +227,10 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  ;; always show line num
+  (global-linum-mode t)
+  ;; 80 char column
+  (turn-on-fci-mode)
 
   ;; nnimap is too slow, use offline-imap as proxy server, just read it by nnmaildir
   (setq gnus-secondary-select-methods
@@ -258,10 +262,8 @@ layers configuration. You are free to put any user code."
      (sql . t)
      (shell . t)))
 
-  ;; always show line num
-  (global-linum-mode t)
-  ;; 80 char column
-  (turn-on-fci-mode)
+  ;; erc
+  (setq erc-nick "hqingyi")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
