@@ -48,6 +48,7 @@ values."
      (shell :variables
             shell-default-position 'bottom
             shell-default-height 50)
+     (colors :variables colors-enable-nyan-cat-progress-bar t)
      ;; format and more
      markdown
      ansible
