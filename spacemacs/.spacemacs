@@ -253,6 +253,11 @@ layers configuration. You are free to put any user code."
      (org . t)
      (sql . t)
      (shell . t)))
+
+  ;; always show line num
+  (global-linum-mode t)
+  ;; 80 char column
+  (turn-on-fci-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
