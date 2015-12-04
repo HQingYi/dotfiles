@@ -231,7 +231,8 @@ layers configuration. You are free to put any user code."
   ;; always show line num
   (global-linum-mode t)
   ;; 80 char column
-  (turn-on-fci-mode)
+  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (global-fci-mode 1)
 
   ;; nnimap is too slow, use offline-imap as proxy server, just read it by nnmaildir
   (setq gnus-secondary-select-methods
