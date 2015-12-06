@@ -264,6 +264,13 @@ layers configuration. You are free to put any user code."
      (sql . t)
      (shell . t)))
 
+  ;; org-crypt, must install MacGPG2(decrypt process error.), binding to D
+  (require 'org-crypt)
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+  (setq org-crypt-key "huangb.qingy@gmail.com")
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "D" 'org-decrypt-entry)
+
   ;; erc
   (setq erc-nick "hqingyi")
 )
