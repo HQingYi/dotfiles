@@ -76,10 +76,3 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-for file in /etc/profile.d/*.sh; do
-  if [ -r $file ]; then
-    source $file
-  fi
-done
-
