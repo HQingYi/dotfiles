@@ -10,21 +10,44 @@ function link_if_target_not_exists(){
     fi
 }
 
+function init_spacemacs_repo(){
+   [[ -d ~/.emacs.d ]] && echo "~/.emacs.d exists." && return
+
+   git clone git@github.com:HQingYi/spacemacs.git ~/.emacs.d
+   cd ~/.emacs.d
+   git checkout -b develop origin/develop
+   git remote add upstream https://github.com/syl20bnr/spacemacs.git
+   git fetch --all
+   cd
+}
+
 function config_spacemacs(){
     cat <<EOF
 === config spacemacs ===
 ..ln ~/.spacemacs
+..git checkout git@github.com:HQingYi/spacemacs.git ~/.emacs.d
 EOF
+    init_spacemacs_repo
     link_if_target_not_exists $DOTFILE_HOME/spacemacs/.spacemacs ~/.spacemacs
+}
+
+function init_oh_my_zsh(){
+    [[ -d ~/.oh-my-zsh ]] && echo "~/.oh-my-zsh exists." && return
+
+    git clone git@github.com:HQingYi/oh-my-zsh.git ~/.oh-my-zsh
+    cd ~/.oh-my-zsh
+    git remote add upstream https://github.com/robbyrussell/oh-my-zsh.git
+    git fetch --all
+    cd
 }
 
 function config_oh_my_zsh(){
     cat <<EOF
 === config oh_my_zsh ===
 ..ln ~/.zshrc
-..install .oh-my-zsh
+..git checkout git@github.com:HQingYi/oh-my-zsh.git ~/.oh-my-zsh
 EOF
-    link_if_target_not_exists $DOTFILE_HOME/oh-my-zsh/oh-my-zsh ~/.oh-my-zsh
+    init_oh_my_zsh
     link_if_target_not_exists $DOTFILE_HOME/oh-my-zsh/.zshrc ~/.zshrc
 }
 
