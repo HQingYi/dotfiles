@@ -40,7 +40,8 @@ values."
      erc
      gnus
      ;; assist
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-private-snippets-directory "~/.snippets")
      (chinese :variables chinese-enable-youdao-dict t)
      osx
      dash
