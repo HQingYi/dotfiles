@@ -250,6 +250,8 @@ layers configuration. You are free to put any user code."
   ;; auto check mail every 2 minutes
   (with-eval-after-load 'gnus
     (gnus-demon-add-handler 'gnus-demon-scan-news 2 t))
+  ;; always read dribble file without ask.
+  (setq gnus-always-read-dribble-file t)
 
   ;; set default location for org.
   (setq org-directory "~/.org")
