@@ -41,6 +41,8 @@ values."
      gnus
      ;; assist
      (auto-completion :variables
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t
                       auto-completion-private-snippets-directory "~/.snippets")
      (chinese :variables chinese-enable-youdao-dict t)
      osx
@@ -234,6 +236,14 @@ layers configuration. You are free to put any user code."
   ;; 80 char column
   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
   (global-fci-mode 1)
+  ;; global company-mode
+  (global-company-mode)
+
+  (defvar company-backends-sh-mode '(company-capf
+                                     company-dabbrev-code
+                                     (company-keywords company-files)
+                                     company-dabbrev))
+  (spacemacs|add-company-hook sh-mode)
 
   ;; nnimap is too slow, use offline-imap as proxy server, just read it by nnmaildir
   (setq gnus-secondary-select-methods
@@ -276,6 +286,7 @@ layers configuration. You are free to put any user code."
 
   ;; erc
   (setq erc-nick "hqingyi")
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
